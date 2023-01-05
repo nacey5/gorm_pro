@@ -3,7 +3,7 @@ package main
 import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"gorm_pro/query"
+	"gorm_pro/raw"
 )
 
 type Product struct {
@@ -18,8 +18,16 @@ func main() {
 	if err != nil {
 		panic("failed to connect database")
 	}
-	c2 := query.GoC2(db)
-	println(c2)
+	var result raw.Result
+	db.Raw("SELECT id, name, age FROM users WHERE name = ?", 3).Scan(&result)
+
+	db.Raw("SELECT id, name, age FROM users WHERE name = ?", 3).Scan(&result)
+
+	var age int
+	db.Raw("SELECT SUM(age) FROM users WHERE role = ?", "admin").Scan(&age)
+
+	var users []User
+	db.Raw("UPDATE users SET name = ? WHERE age = ? RETURNING id, name", "jinzhu", 20).Scan(&users)
 }
 
 func prod(db *gorm.DB) {
