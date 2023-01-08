@@ -2,6 +2,11 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/go-playground/locales/zh"
+	ut "github.com/go-playground/universal-translator"
+	val "github.com/go-playground/validator/v10"
+	zh_translations "github.com/go-playground/validator/v10/translations/zh"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"gorm_pro/blog-service/global"
@@ -14,6 +19,9 @@ import (
 	"time"
 )
 
+// @title 博客系统
+// @version 1.0
+// @description Go博客项目
 func main() {
 	gin.SetMode(global.ServerSetting.RunMode)
 	router := routers.NewRouter()
@@ -37,6 +45,12 @@ func init() {
 	if err != nil {
 		log.Fatalf("init.setupLogger err: %v", err)
 	}
+
+	err = setupTranslations()
+	if err != nil {
+		log.Fatalf("init.setupTranslations err: %v", err)
+	}
+
 }
 
 func setupSetting() error {
@@ -84,5 +98,17 @@ func setupLogger() error {
 		LocalTime: true,
 	}, "", log.LstdFlags).WithCaller(2)
 
+	return nil
+}
+
+var trans ut.Translator
+
+func setupTranslations() error {
+	uni := ut.New(zh.New())
+	trans, _ = uni.GetTranslator("zh")
+	v, ok := binding.Validator.Engine().(*val.Validate)
+	if ok {
+		_ = zh_translations.RegisterDefaultTranslations(v, trans)
+	}
 	return nil
 }
