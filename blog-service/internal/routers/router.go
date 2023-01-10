@@ -4,7 +4,10 @@ import (
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
+	"gorm_pro/blog-service/global"
+	"gorm_pro/blog-service/internal/routers/api"
 	v1 "gorm_pro/blog-service/internal/routers/api/v1"
+	"net/http"
 )
 
 func NewRouter() *gin.Engine {
@@ -15,6 +18,9 @@ func NewRouter() *gin.Engine {
 
 	article := v1.NewArticle()
 	tag := v1.NewTag()
+	upload := api.NewUpload()
+	r.POST("/upload/file", upload.UploadFile)
+	r.StaticFS("/static", http.Dir(global.AppSetting.UploadSavePath))
 	apiv1 := r.Group("/api/v1")
 	{
 		apiv1.POST("/tags", tag.Create)

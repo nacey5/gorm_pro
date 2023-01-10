@@ -21,3 +21,6 @@
 2023/01/08 18:44:58 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 44 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673174698899345000}
 2023/01/08 18:45:55 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 44 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673174755811702100}
 2023/01/08 18:46:16 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 44 main.init.0"],"level":"error","message":"app.BindAndValid errs: Key: 'UpdateTagRequest.Name' Error:Field validation for 'Name' failed on the 'min' tag","time":1673174776617969100}
+2023/01/10 12:44:53 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 44 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673325893076150800}
+2023/01/10 12:48:40 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 44 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673326120534081300}
+2023/01/10 12:49:49 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 44 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673326189587039600}
