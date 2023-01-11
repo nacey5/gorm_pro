@@ -14,6 +14,7 @@ import (
 	"gorm_pro/blog-service/internal/routers"
 	"gorm_pro/blog-service/pkg/logger"
 	"gorm_pro/blog-service/pkg/setting"
+	"gorm_pro/blog-service/pkg/tracer"
 	"log"
 	"net/http"
 	"time"
@@ -32,7 +33,7 @@ func main() {
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
-	global.Logger.Infof("%s: go-programming-tour-book/%s", "eddycjy", "blog-service")
+	global.Logger.Info("%s: go-programming-tour-book/%s", "eddycjy", "blog-service")
 	s.ListenAndServe()
 }
 
@@ -51,6 +52,23 @@ func init() {
 		log.Fatalf("init.setupTranslations err: %v", err)
 	}
 
+	err = setUpTracer()
+	if err != nil {
+		log.Fatalf("init.setUpTracer err: %v", err)
+	}
+
+}
+
+func setUpTracer() error {
+	jaegerTracer, _, err := tracer.NewJaegerTracer(
+		"blog-service",
+		"192.168.48.129:6831",
+	)
+	if err != nil {
+		return err
+	}
+	global.Tracer = jaegerTracer
+	return nil
 }
 
 func setupSetting() error {
@@ -70,14 +88,25 @@ func setupSetting() error {
 	if err != nil {
 		return err
 	}
+	err = setting.ReadSection("JWT", &global.JWTSetting)
+	if err != nil {
+		return err
+	}
 
 	err = setupDBEngine()
 	if err != nil {
 		log.Fatalf("init.setupDBEngine err: %v", err)
 	}
 
+	err = setting.ReadSection("Email", &global.EmailSetting)
+	if err != nil {
+		return err
+	}
+
 	global.ServerSetting.ReadTimeout *= time.Second
 	global.ServerSetting.WriteTimeout *= time.Second
+	global.JWTSetting.Expire *= time.Second
+	global.AppSetting.DefaultContextTimeout *= time.Second
 	return nil
 }
 

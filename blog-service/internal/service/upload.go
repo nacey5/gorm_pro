@@ -19,7 +19,7 @@ func (svc *Service) UploadFile(fileType upload.FileType, file multipart.File, fi
 		return nil, errors.New("file suffix is not supported.")
 	}
 	if upload.CheckMaxSize(fileType, file) {
-		return nil, errors.New("exceeded maximum file limit.")
+		return nil, errors.New("exceeded maximum file limiter.")
 	}
 
 	uploadSavePath := upload.GetSavePath()

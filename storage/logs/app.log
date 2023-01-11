@@ -24,3 +24,10 @@
 2023/01/10 12:44:53 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 44 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673325893076150800}
 2023/01/10 12:48:40 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 44 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673326120534081300}
 2023/01/10 12:49:49 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 44 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673326189587039600}
+2023/01/10 20:45:25 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 44 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673354725930544600}
+2023/01/10 21:15:34 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 44 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673356534676232100}
+2023/01/11 17:16:09 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 45 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673428569456628600}
+2023/01/11 17:17:38 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 45 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673428658269963700}
+2023/01/11 17:21:06 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 45 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673428866842048700}
+2023/01/11 17:49:29 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 45 main.init.0"],"level":"info","message":"%s: go-programming-tour-book/%seddycjyblog-service","time":1673430569604465900}
+2023/01/11 18:01:28 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 45 main.init.0"],"level":"info","message":"%s: go-programming-tour-book/%seddycjyblog-service","time":1673431288175501000}
