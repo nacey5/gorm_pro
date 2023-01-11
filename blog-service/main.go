@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/locales/zh"
@@ -17,6 +18,7 @@ import (
 	"gorm_pro/blog-service/pkg/tracer"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -59,6 +61,20 @@ func init() {
 
 }
 
+var (
+	port    string
+	runMode string
+	config  string
+)
+
+func setupFlag() error {
+	flag.StringVar(&port, "port", "", "启动端口")
+	flag.StringVar(&runMode, "runMode", "", "启动模式")
+	flag.StringVar(&config, "config", "configs/", "指定要使用的配置文件路径")
+	flag.Parse()
+	return nil
+}
+
 func setUpTracer() error {
 	jaegerTracer, _, err := tracer.NewJaegerTracer(
 		"blog-service",
@@ -72,7 +88,7 @@ func setUpTracer() error {
 }
 
 func setupSetting() error {
-	setting, err := setting.NewSetting()
+	setting, err := setting.NewSetting(strings.Split(config, ",")...)
 	if err != nil {
 		return err
 	}
@@ -107,6 +123,13 @@ func setupSetting() error {
 	global.ServerSetting.WriteTimeout *= time.Second
 	global.JWTSetting.Expire *= time.Second
 	global.AppSetting.DefaultContextTimeout *= time.Second
+
+	if port != "" {
+		global.ServerSetting.HttpPort = port
+	}
+	if runMode != "" {
+		global.ServerSetting.RunMode = runMode
+	}
 	return nil
 }
 
