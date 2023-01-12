@@ -31,3 +31,4 @@
 2023/01/11 17:21:06 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 45 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1673428866842048700}
 2023/01/11 17:49:29 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 45 main.init.0"],"level":"info","message":"%s: go-programming-tour-book/%seddycjyblog-service","time":1673430569604465900}
 2023/01/11 18:01:28 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 45 main.init.0"],"level":"info","message":"%s: go-programming-tour-book/%seddycjyblog-service","time":1673431288175501000}
+2023/01/12 13:13:05 {"callers":["F:/go_project_all/gorm_pro/blog-service/main.go: 87 main.init.0"],"level":"info","message":"%s: go-programming-tour-book/%seddycjyblog-service","time":1673500385267242000}

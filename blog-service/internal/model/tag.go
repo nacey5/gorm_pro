@@ -3,6 +3,7 @@ package model
 import (
 	"github.com/jinzhu/gorm"
 	"gorm_pro/blog-service/pkg/app"
+	"gorm_pro/blog-service/pkg/errcode"
 )
 
 type Tag struct {
@@ -52,7 +53,11 @@ func (t Tag) List(db *gorm.DB, pageOffset, pageSize int) ([]*Tag, error) {
 }
 
 func (t Tag) Create(db *gorm.DB) error {
-	return db.Create(&t).Error
+	qu := &Tag{}
+	if db.Where("name = ?", t.Name).First(&qu).RecordNotFound() {
+		return db.Create(&t).Error
+	}
+	return errcode.ErrorCreateTagFail
 }
 
 func (t Tag) Update(db *gorm.DB, values interface{}) error {
@@ -65,4 +70,14 @@ func (t Tag) Update(db *gorm.DB, values interface{}) error {
 
 func (t Tag) Delete(db *gorm.DB) error {
 	return db.Where("id = ? AND is_del = ?", t.Model.ID, 0).Delete(&t).Error
+}
+
+func (t Tag) Get(db *gorm.DB) (Tag, error) {
+	var tag Tag
+	err := db.Where("id = ? AND is_del = ? AND state = ?", t.ID, 0, t.State).First(&tag).Error
+	if err != nil && err != gorm.ErrRecordNotFound {
+		return tag, err
+	}
+
+	return tag, nil
 }
