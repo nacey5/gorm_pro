@@ -44,7 +44,7 @@ func main() {
 	}
 }
 func RunTCPServer(port string) (net.Listener, error) {
-	return net.Listen("tcp", ":"+port)
+	return net.Listen("tcp-server", ":"+port)
 }
 
 func RunHttpServer(port string) *http.Server {
