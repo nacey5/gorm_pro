@@ -18,4 +18,8 @@ var (
 	ErrorCountTagFail   = NewError(20010005, "统计标签失败")
 
 	ErrorUploadFileFail = NewError(20030001, "上传文件失败")
+
+	TogRPCError = NewError(2004001, "远程调用失败")
+
+	Fail = NewError(004, "fail")
 )
