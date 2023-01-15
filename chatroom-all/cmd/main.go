@@ -2,10 +2,15 @@ package main
 
 import (
 	"fmt"
+	"gorm_pro/chatroom-all/global"
 	"gorm_pro/chatroom-all/server"
 	"log"
 	"net/http"
 )
+
+func init() {
+	global.Init()
+}
 
 var (
 	addr   = ":2022"
